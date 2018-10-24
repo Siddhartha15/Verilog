@@ -1,0 +1,86 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x13bef20 .scope module, "DFF_tb" "DFF_tb" 2 3;
+ .timescale 0 0;
+v0x13d12b0_0 .var "clk", 0 0;
+v0x13d1380_0 .var "d", 0 0;
+v0x13d1430_0 .net "q", 0 0, v0x13d10c0_0; 1 drivers
+v0x13d14e0_0 .net "qbar", 0 0, v0x13d1160_0; 1 drivers
+v0x13d15c0_0 .var "reset", 0 0;
+S_0x13bf010 .scope module, "Obj" "DFF" 2 9, 3 3, S_0x13bef20;
+ .timescale 0 0;
+v0x1389690_0 .net "clk", 0 0, v0x13d12b0_0; 1 drivers
+v0x13d1020_0 .net "d", 0 0, v0x13d1380_0; 1 drivers
+v0x13d10c0_0 .var "q", 0 0;
+v0x13d1160_0 .var "qbar", 0 0;
+v0x13d1210_0 .net "reset", 0 0, v0x13d15c0_0; 1 drivers
+E_0x139b360 .event posedge, v0x1389690_0;
+    .scope S_0x13bf010;
+T_0 ;
+    %wait E_0x139b360;
+    %load/v 8, v0x13d1020_0, 1;
+    %load/v 9, v0x13d1210_0, 1;
+    %inv 9, 1;
+    %and 8, 9, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x13d10c0_0, 0, 8;
+    %load/v 8, v0x13d10c0_0, 1;
+    %inv 8, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x13d1160_0, 0, 8;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x13bef20;
+T_1 ;
+    %vpi_call 2 13 "$dumpfile", "DFF.vcd";
+    %vpi_call 2 14 "$dumpvars", 1'sb0, S_0x13bef20;
+    %set/v v0x13d12b0_0, 0, 1;
+    %delay 5, 0;
+    %set/v v0x13d1380_0, 1, 1;
+    %set/v v0x13d15c0_0, 1, 1;
+    %delay 5, 0;
+    %set/v v0x13d1380_0, 0, 1;
+    %set/v v0x13d15c0_0, 1, 1;
+    %delay 15, 0;
+    %set/v v0x13d1380_0, 1, 1;
+    %set/v v0x13d15c0_0, 0, 1;
+    %delay 15, 0;
+    %set/v v0x13d1380_0, 0, 1;
+    %set/v v0x13d15c0_0, 0, 1;
+    %delay 15, 0;
+    %set/v v0x13d1380_0, 1, 1;
+    %set/v v0x13d15c0_0, 0, 1;
+    %delay 15, 0;
+    %set/v v0x13d1380_0, 0, 1;
+    %set/v v0x13d15c0_0, 0, 1;
+    %delay 15, 0;
+    %set/v v0x13d1380_0, 1, 1;
+    %set/v v0x13d15c0_0, 0, 1;
+    %delay 15, 0;
+    %set/v v0x13d1380_0, 0, 1;
+    %set/v v0x13d15c0_0, 0, 1;
+    %delay 5, 0;
+    %set/v v0x13d1380_0, 1, 1;
+    %set/v v0x13d15c0_0, 1, 1;
+    %delay 5, 0;
+    %vpi_call 2 27 "$finish";
+    %end;
+    .thread T_1;
+    .scope S_0x13bef20;
+T_2 ;
+    %delay 2, 0;
+    %load/v 8, v0x13d12b0_0, 1;
+    %inv 8, 1;
+    %set/v v0x13d12b0_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "DFF_tb.v";
+    "behavioral.v";
